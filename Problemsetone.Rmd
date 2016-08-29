@@ -1,0 +1,44 @@
+---
+title: "Mosque Growth and Anti-Terrorism Funding"
+author: "Troy Wiipongwii"
+date: "August 27, 2016"
+output: word_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Abstract
+
+Following 9/11,  Homeland Security was erected and funded to aid in combatting domestic terrorism in the USA.  Also following 9/11 people leaving muslim dominated countries drastically increased.  This paper is to identify the correlation between muslim growth in america and increased anti-terrorism funding.
+
+## Our Data
+
+Our data consists of mosque growth in the United States, broken down by state. It also included the amount of funding each state receives from Homeland Security's anti-terrorism funding campaign.  It also included population denstity of the state and relative rank by density.  Since our goal is to find a correlation between increased funding and the growth of the muslim population our dependent variable will be the anti-terrorism funding denoted "HSF" from here on out.
+
+```{r echo=TRUE}
+setwd("C:/Users/twiipongwii/Documents/R")
+library(xlsx)
+mosque=read.xlsx("mosque1.xlsx",1)
+summary(mosque)
+
+```
+
+## Geometric View of Our Data
+
+```{r echo=TRUE}
+plot(mosque$HSF, xlab="State", ylab="Homeland Security Funding", main="Plot for Dependent Variable")
+hist(mosque$HSF, xlab = "Homeland Security Funding",ylab="Frequency",main="Histogram for Dependent Variable")
+
+```
+
+## Regression Model
+
+```{r echo=TRUE}
+summary(lm(HSF~mosque10*Rank,data=mosque))
+```
+
+## Results
+
+From our Regression model, we can see there is a strong correlation between mosque size and increased anti-terrorism funding. from our data analysis we can also see that around 40 mosques in a densily populated area is the lower bound for increased anti-terroism funding.  With the exception of less dense states, this observation did not hold true. 
